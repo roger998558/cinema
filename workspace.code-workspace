@@ -1,0 +1,22 @@
+{
+	"folders": [
+		{
+			"path": "discovery-server"
+		},
+		{
+			"name": "gateway",
+			"path": "gateway"
+		},
+		{
+			"name": "filme",
+			"path": "filme"
+		},
+		{
+			"name": "bilheteria",
+			"path": "bilheteria"
+		},
+		{
+			"path": "sala"
+		}
+	]
+}
