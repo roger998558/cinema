@@ -2,31 +2,28 @@ package br.com.tech4me.filme.shared;
 
 import br.com.tech4me.filme.model.Filme;
 import br.com.tech4me.filme.model.Tipo;
-import jakarta.validation.constraints.NotBlank;
+
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+
 
 public record FilmeCompletoDTO(
 String id,
-@NotNull
-@NotBlank(message = "Ola o campo deve ser preechido")
-@NotEmpty(message = "Ola o nome do filme nao foi informado")
+
+@NotEmpty(message = "O elemento anotado não deve ser nulo ou vazio.")
 String nomeDofilme,
-@NotNull
-@NotBlank(message = "Ola o campo deve ser preechido")
-@NotEmpty(message = "Ola o nome do autor nao foi informado")
+
+@NotEmpty(message = "O elemento anotado não deve ser nulo ou vazio.")
 String autorDoFilme,
-@NotNull
-@NotBlank(message = "Ola o campo deve ser preechido")
-@NotEmpty(message = "Ola o tempo do filme nao foi estimado ")
+
+@Positive(message = "Por favor insira somente numeros positivos")
+@NotEmpty(message = "O elemento anotado não deve ser nulo ou vazio.")
 String tempoDoFilme,
-@NotNull
-@NotBlank(message = "Ola o campo deve ser preechido")
-@NotEmpty(message = "Ola o tipo do filme nao foi informado")
+
+@NotEmpty(message = "O elemento anotado não deve ser nulo ou vazio.")
 Tipo tipo,
-@NotNull
-@NotBlank(message = "Ola o campo deve ser preechido")
-@NotEmpty(message = "Ola a sinopse do filme nao foi informado")
+
+@NotEmpty(message = "O elemento anotado não deve ser nulo ou vazio.")
 String sinopse
 ) {
 

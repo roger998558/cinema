@@ -1,11 +1,14 @@
 package br.com.tech4me.filme.repository;
 
 
-import java.util.Optional;
+
+
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import br.com.tech4me.filme.model.Filme;
 
 public interface Repository extends JpaRepository<Filme,String > {
-     Optional<Filme> findByTipoIgnoreCase(String Tipo );
+     List<Filme> findByTipoIgnoreCase(String Tipo );
+     
 }

@@ -11,6 +11,7 @@ import br.com.tech4me.bilheteria.model.Status;
 import br.com.tech4me.bilheteria.repository.Repository;
 import br.com.tech4me.bilheteria.shared.BilheteCompletoDTO;
 import br.com.tech4me.bilheteria.shared.BilheteDTO;
+import br.com.tech4me.bilheteria.shared.StatusDaPoltronaDTO;
 
 public class serviceImpl implements service{
     @Autowired
@@ -57,8 +58,18 @@ public class serviceImpl implements service{
            return "removido com sucesso";
         }
         return "objeto nao encontrado";
- 
+    
      }
+    
+    @Override
+    public List<StatusDaPoltronaDTO> findAllByStatusIgnoreCase(String status) {
+         return repositorio.findAllByStatusIgnoreCase(status).stream()
+         .map( S -> StatusDaPoltronaDTO.fromDaPoltronaDTO(S)).toList();
+
     }
+}
+
+    
+    
     
 

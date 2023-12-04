@@ -43,12 +43,10 @@ private ResponseEntity<FilmeCompletoDTO> obterPorId (@PathVariable String id){
     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 }
 @GetMapping("/{tipo}")
-private ResponseEntity<FilmeDTO> obterPorTipo (@PathVariable String tipo ){
-    if (service.obterPorTipo(tipo).isPresent()) {
-         return new ResponseEntity<>(service.obterPorTipo(tipo).get(),HttpStatus.OK);
+private ResponseEntity<List<FilmeDTO>> obterPorTipo (@PathVariable String tipo ){
+        return new ResponseEntity<>(service.findByTipoIgnoreCase(tipo),HttpStatus.OK);
     }
-   return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-}
+  
 
 @PostMapping
 private ResponseEntity<FilmeCompletoDTO>cadastrarFilme(@Valid @RequestBody FilmeCompletoDTO filmeComleto) {

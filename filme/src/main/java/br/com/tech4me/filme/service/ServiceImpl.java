@@ -17,16 +17,14 @@ public class ServiceImpl implements ServiceFilme {
 
     @Override
     public List<FilmeDTO> obterTodos() {
-        return repositorio.findAll().stream().map(F-> FilmeDTO.fromFilmeDTO(F)).toList();
+        return repositorio.findAll().stream()
+        .map(F-> FilmeDTO.fromFilmeDTO(F)).toList();
     }
 
     @Override
-    public Optional<FilmeDTO> obterPorTipo(String tipo) {
-       Optional <Filme> pesquizarPorTipoDoFilme = repositorio.findByTipoIgnoreCase(tipo);
-       if (pesquizarPorTipoDoFilme.isPresent()) {
-         return Optional.of(FilmeDTO.fromFilmeDTO(pesquizarPorTipoDoFilme.get()));
-       }
-       return Optional.empty();
+    public List<FilmeDTO> findByTipoIgnoreCase(String tipo) {
+      return repositorio.findByTipoIgnoreCase(tipo).stream()
+      .map(T-> FilmeDTO.fromFilmeDTO(T)).toList();
     }
 
     @Override

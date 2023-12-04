@@ -82,10 +82,6 @@ public class Bilhete {
         this.fila = fila;
     }
 
-    public void setLugar(LugarDaPoltrona lugar) {
-        this.lugar = lugar;
-    }
-
     public Status getStatus() {
         return status;
     }

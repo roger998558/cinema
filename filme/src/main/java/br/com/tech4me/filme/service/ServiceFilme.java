@@ -10,7 +10,7 @@ import br.com.tech4me.filme.shared.FilmeDTO;
 public interface ServiceFilme {
 
     List<FilmeDTO> obterTodos();
-    Optional<FilmeDTO>obterPorTipo(String tipo );
+    List<FilmeDTO>findByTipoIgnoreCase(String tipo );
     Optional<FilmeCompletoDTO> obterPorId (String id );
     FilmeCompletoDTO cadastrarFilme (FilmeCompletoDTO novoFilme);
     Optional<FilmeCompletoDTO> atualizarPorId (String id,FilmeCompletoDTO filmeCompleto );
