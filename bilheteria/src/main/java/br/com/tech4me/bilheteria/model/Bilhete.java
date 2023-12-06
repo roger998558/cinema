@@ -7,7 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -23,16 +23,10 @@ public class Bilhete {
     private Fila fila;
     private Status status;
     @JoinColumn(name = "id_sala")
-    @OneToMany
+    @OneToOne
     private Sala sala;
 
-    public Sala getSala() {
-        return sala;
-    }
-
-    public void setSala(Sala sala) {
-        this.sala = sala;
-    }
+    
 
     public Bilhete(BilheteCompletoDTO bilheteDTO ){
         setId(bilheteDTO.id());
@@ -101,6 +95,13 @@ public class Bilhete {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+    public Sala getSala() {
+        return sala;
+    }
+
+    public void setSala(Sala sala) {
+        this.sala = sala;
     }
    
 }
