@@ -7,6 +7,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 
@@ -18,13 +21,18 @@ public class Sala {
     private Integer numeroDasala;
     private Status status;
     private Imagem imagemDoFilme;
+    @JoinColumn(name = "id_filme")
+    @OneToMany
+    private Filme filme;
+
    public Sala(){
 
    }
    public Sala(SalaCompletaDTO dtc){
    setNumeroDasala(dtc.numeroDasala());
    setImagemDoFilme(dtc.imagemDoFilme());
-   setImagemDoFilme(dtc.imagemDoFilme());
+   setStatus(dtc.status());
+   setFilme(filme);
     
    }
      public Sala(SalaDTO dto){
@@ -51,6 +59,12 @@ public class Sala {
     }
     public void setImagemDoFilme(Imagem imagemDoFilme) {
         this.imagemDoFilme = imagemDoFilme;
+    }
+    public Filme getFilme() {
+        return filme;
+    }
+    public void setFilme(Filme filme) {
+        this.filme = filme;
     }
     
     

@@ -1,6 +1,9 @@
 package br.com.tech4me.bilheteria.model;
 
+import java.util.Optional;
+
 import br.com.tech4me.bilheteria.shared.BilheteCompletoDTO;
+import br.com.tech4me.bilheteria.shared.BilheteDTO;
 import br.com.tech4me.bilheteria.shared.StatusDaPoltronaDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -24,7 +27,7 @@ public class Bilhete {
     private Status status;
     @JoinColumn(name = "id_sala")
     @OneToOne
-    private Sala sala;
+    private Optional<Sala> sala;
 
     
 
@@ -36,7 +39,19 @@ public class Bilhete {
        setLugar(bilheteDTO.lugar(),bilheteDTO.status());
         setFila(bilheteDTO.fila());
         setStatus(bilheteDTO.status());
+        setSala(bilheteDTO.sala());
+        
 
+    }
+
+    public Bilhete (BilheteDTO bilheteDTO){
+        setId(bilheteDTO.id());
+        setValor(bilheteDTO.Valor());
+        setOpcao(bilheteDTO.opcao());
+        setLugar(bilheteDTO.lugar());
+        setFila(bilheteDTO.fila());
+        setStatus(bilheteDTO.status());
+       
     }
 
     public Bilhete (StatusDaPoltronaDTO bilheteDTO){
@@ -96,13 +111,19 @@ public class Bilhete {
     public void setStatus(Status status) {
         this.status = status;
     }
-    public Sala getSala() {
+
+    public void setLugar(LugarDaPoltrona lugar) {
+        this.lugar = lugar;
+    }
+
+    public Optional<Sala> getSala() {
         return sala;
     }
 
-    public void setSala(Sala sala) {
-        this.sala = sala;
+    public void setSala(Optional<Sala> optional) {
+        this.sala = optional;
     }
+   
    
 }
 

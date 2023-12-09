@@ -1,6 +1,7 @@
 package br.com.tech4me.sala.shared;
 
 
+import br.com.tech4me.sala.model.Filme;
 import br.com.tech4me.sala.model.Imagem;
 import br.com.tech4me.sala.model.Sala;
 import br.com.tech4me.sala.model.Status;
@@ -14,14 +15,17 @@ public record SalaCompletaDTO (
  @NotEmpty(message = "O campo nao pode ser nulo ou vazio.")
  Status status,
  @NotEmpty(message = "O campo nao pode ser nulo ou vazio.")
- Imagem imagemDoFilme
+ Imagem imagemDoFilme,
+ @NotEmpty(message = "O campo nao pode ser nulo ou vazio.")
+ Filme filme 
  ) {
 
     public static SalaCompletaDTO fromSalaCompletaDTO (Sala sala ){
     return new SalaCompletaDTO(
     sala.getNumeroDasala(),
     sala.getStatus(),
-    sala.getImagemDoFilme());
+    sala.getImagemDoFilme(),
+    sala.getFilme());
 
 }
 }

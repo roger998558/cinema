@@ -43,6 +43,7 @@ public class Sala {
     public void setImagemDoFilme(Imagem imagemDoFilme) {
         this.imagemDoFilme = imagemDoFilme;
     }
+   
     
     
 

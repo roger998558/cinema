@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import br.com.tech4me.sala.model.Sala;
+import br.com.tech4me.sala.model.Status;
 import br.com.tech4me.sala.repository.Repository;
 import br.com.tech4me.sala.shared.SalaCompletaDTO;
 import br.com.tech4me.sala.shared.SalaDTO;
@@ -31,6 +32,7 @@ public class ServiceImpl implements Service {
     @Override
     public SalaCompletaDTO cadastrarSala(SalaCompletaDTO novaSala) {
        Sala salaAdd = new Sala(novaSala);
+        salaAdd.setStatus(Status.LIVRE);
        repositorio.save(salaAdd);
        return SalaCompletaDTO.fromSalaCompletaDTO(salaAdd);
     }
@@ -41,6 +43,7 @@ public class ServiceImpl implements Service {
         if (salaPut.isPresent()) {
             Sala salaAtualizar = new Sala(salaCompleto);
             salaAtualizar.setNumeroDasala(numeroDaSala);
+           
             return Optional.of(SalaCompletaDTO.fromSalaCompletaDTO(salaPut.get()));
         }
         return Optional.empty();

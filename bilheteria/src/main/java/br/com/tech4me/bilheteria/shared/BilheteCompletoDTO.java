@@ -2,6 +2,8 @@ package br.com.tech4me.bilheteria.shared;
 
 
 
+import java.util.Optional;
+
 import br.com.tech4me.bilheteria.model.Bilhete;
 import br.com.tech4me.bilheteria.model.Fila;
 import br.com.tech4me.bilheteria.model.LugarDaPoltrona;
@@ -11,6 +13,7 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Positive;
 import br.com.tech4me.bilheteria.model.OpcaoMeiaOuInteira;
 import br.com.tech4me.bilheteria.model.Sala;
+
 
 public record BilheteCompletoDTO(
     
@@ -36,11 +39,11 @@ public record BilheteCompletoDTO(
 
      @NotEmpty(message = "O campo nao pode ser nulo ou vazio.")
     Status status,
-     @Positive(message = "Por favor insira somente numeros positivos")
-    @NotEmpty(message = "O campo nao pode ser nulo ou vazio.")
-    Sala sala
+
+    Optional<Sala> sala 
+   
     ) {
-    public static BilheteCompletoDTO fromBilheteCompletoDTO(Bilhete bilhete){
+    public static BilheteCompletoDTO fromBilheteCompletoDTO(Bilhete bilhete , Optional<Sala> sala ){
          return new BilheteCompletoDTO(
          bilhete.getId(),
          bilhete.getValor(),
@@ -49,6 +52,8 @@ public record BilheteCompletoDTO(
          bilhete.getLugar(),
          bilhete.getFila(),
          bilhete.getStatus(),
-         bilhete.getSala());
+         sala  );
+
     }
+
 }
