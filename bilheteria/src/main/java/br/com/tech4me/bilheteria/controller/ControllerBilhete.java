@@ -34,9 +34,7 @@ return new ResponseEntity<>(servico.obterTodosOsBilhetes(),HttpStatus.OK);
 
 @PostMapping
 private ResponseEntity<BilheteCompletoDTO> cadastrarBilhete (@RequestBody BilheteCompletoDTO bilhete ){
-    if () {
-        
-    }
+    
 return new ResponseEntity<>(servico.cadastrarBilhete(bilhete),HttpStatus.CREATED);
 }
 @GetMapping("/{id}")

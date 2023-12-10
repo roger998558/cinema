@@ -2,7 +2,7 @@ package br.com.tech4me.bilheteria.shared;
 
 
 
-import java.util.Optional;
+
 
 import br.com.tech4me.bilheteria.model.Bilhete;
 import br.com.tech4me.bilheteria.model.Fila;
@@ -13,6 +13,7 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Positive;
 import br.com.tech4me.bilheteria.model.OpcaoMeiaOuInteira;
 import br.com.tech4me.bilheteria.model.Sala;
+
 
 
 public record BilheteCompletoDTO(
@@ -40,10 +41,10 @@ public record BilheteCompletoDTO(
      @NotEmpty(message = "O campo nao pode ser nulo ou vazio.")
     Status status,
 
-    Optional<Sala> sala 
+   Sala  sala 
    
     ) {
-    public static BilheteCompletoDTO fromBilheteCompletoDTO(Bilhete bilhete , Optional<Sala> sala ){
+    public static BilheteCompletoDTO fromBilheteCompletoDTO(Bilhete bilhete , Sala sala ){
          return new BilheteCompletoDTO(
          bilhete.getId(),
          bilhete.getValor(),

@@ -1,6 +1,6 @@
 package br.com.tech4me.bilheteria.model;
 
-import java.util.Optional;
+
 
 import br.com.tech4me.bilheteria.shared.BilheteCompletoDTO;
 import br.com.tech4me.bilheteria.shared.BilheteDTO;
@@ -27,7 +27,7 @@ public class Bilhete {
     private Status status;
     @JoinColumn(name = "id_sala")
     @OneToOne
-    private Optional<Sala> sala;
+    private Integer sala;
 
     
 
@@ -38,8 +38,8 @@ public class Bilhete {
         setOpcao(bilheteDTO.opcao());
        setLugar(bilheteDTO.lugar(),bilheteDTO.status());
         setFila(bilheteDTO.fila());
-        setStatus(bilheteDTO.status());
-        setSala(bilheteDTO.sala());
+        
+        
         
 
     }
@@ -48,7 +48,7 @@ public class Bilhete {
         setId(bilheteDTO.id());
         setValor(bilheteDTO.Valor());
         setOpcao(bilheteDTO.opcao());
-        setLugar(bilheteDTO.lugar());
+        setLugar(bilheteDTO.lugar(),bilheteDTO.status());
         setFila(bilheteDTO.fila());
         setStatus(bilheteDTO.status());
        
@@ -112,17 +112,15 @@ public class Bilhete {
         this.status = status;
     }
 
-    public void setLugar(LugarDaPoltrona lugar) {
-        this.lugar = lugar;
-    }
-
-    public Optional<Sala> getSala() {
+    public Integer getSala() {
         return sala;
     }
 
-    public void setSala(Optional<Sala> optional) {
-        this.sala = optional;
+    public void setSala(Integer sala) {
+        this.sala = sala;
     }
+
+   
    
    
 }

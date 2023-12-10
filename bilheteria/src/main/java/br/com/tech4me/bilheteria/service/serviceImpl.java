@@ -27,40 +27,55 @@ public class serviceImpl implements service{
     }
 
     @Override
-    public Optional<BilheteCompletoDTO> cadastrarBilhete(BilheteCompletoDTO novoBilhete) {
+    public BilheteCompletoDTO cadastrarBilhete(BilheteCompletoDTO novoBilhete) {
        
         Bilhete bilheteAdd = new Bilhete(novoBilhete);
-         Optional<Sala> sala = salaFeign.obterPorNumeroDaSala(bilheteAdd.getSala());
-         if (sala.isPresent()) {
+         Sala sala = salaFeign.obterPorNumeroDaSala(bilheteAdd.getSala());
+       
+       if (!novoBilhete.lugar().equals(bilheteAdd.getLugar())) {
         bilheteAdd.setStatus(Status.OCUPADO);
         repositorio.save(bilheteAdd);
-        return Optional.of( BilheteCompletoDTO.fromBilheteCompletoDTO(bilheteAdd,sala));
+        return  BilheteCompletoDTO.fromBilheteCompletoDTO(bilheteAdd,sala);
          }
-         return Optional.empty(); 
-        
-         
+        return  BilheteCompletoDTO.fromBilheteCompletoDTO(bilheteAdd,sala);
+     
+       }
        
-    }
-    @CircuitBreaker(name = "obterPorNumeroDaSala", fallbackMethod = "fallbackObterPorNumero")
+
+    @CircuitBreaker(name = "obterPorNumeroDaSala", fallbackMethod = "fallbackObterBilhetePorId")
     @Override
     public Optional<BilheteCompletoDTO> obterBilhetePorId(String id) {
         Optional<Bilhete> bilhete = repositorio.findById(id);
 
         if (bilhete.isPresent()) {
 
-           Optional< Sala> sala = salaFeign.obterPorNumeroDaSala(bilhete.get().getSala());
+            Sala sala = salaFeign.obterPorNumeroDaSala(bilhete.get().getSala());
             return Optional.of(BilheteCompletoDTO.fromBilheteCompletoDTO(bilhete.get(),sala));
         }
         return Optional.empty();   
+    }
+
+   
+    public Optional<BilheteCompletoDTO> fallbackObterBilhetePorId( String id , Exception e){
+        Optional<Bilhete> bilhete = repositorio.findById(id);
+
+        if (bilhete.isPresent()) {
+            Sala sala  = null;
+            return Optional.of(BilheteCompletoDTO.fromBilheteCompletoDTO(bilhete.get(),sala ));
+        }
+        return Optional.empty();
+
     }
 
     @Override
     public Optional<BilheteCompletoDTO> atualizarBilhetePorId(String id, BilheteCompletoDTO bilheteAtualizado) {
        Optional<Bilhete> bilhete = repositorio.findById(id);
        if (bilhete.isPresent()) {
-        Bilhete bilhetePut = new Bilhete(bilheteAtualizado);
+         Sala sala = salaFeign.obterPorNumeroDaSala(bilhete.get().getSala());
+       
+             Bilhete bilhetePut = new Bilhete(bilheteAtualizado);
         bilhetePut.setId(id);
-        return Optional.of(BilheteCompletoDTO.fromBilheteCompletoDTO(bilhete.get(),salaFeign));
+        return Optional.of(BilheteCompletoDTO.fromBilheteCompletoDTO(bilhete.get(),sala ));
        }
        return Optional.empty();
     }

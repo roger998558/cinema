@@ -10,7 +10,7 @@ import br.com.tech4me.bilheteria.shared.StatusDaPoltronaDTO;
 
 public interface service {
     List<BilheteDTO> obterTodosOsBilhetes();
-    Optional<BilheteCompletoDTO>cadastrarBilhete(BilheteCompletoDTO novoBilhete);
+    BilheteCompletoDTO cadastrarBilhete(BilheteCompletoDTO novoBilhete);
     Optional<BilheteCompletoDTO> obterBilhetePorId (String id);
     Optional<BilheteCompletoDTO> atualizarBilhetePorId(String id, BilheteCompletoDTO bilheteAtualizado );
     String deletarBilhetePorId(String id );
