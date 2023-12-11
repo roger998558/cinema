@@ -40,7 +40,8 @@ public record BilheteCompletoDTO(
 
      @NotEmpty(message = "O campo nao pode ser nulo ou vazio.")
     Status status,
-
+     @Positive(message = "Por favor insira somente numeros positivos")
+     @NotEmpty(message = "O campo nao pode ser nulo ou vazio.")
    Sala  sala 
    
     ) {

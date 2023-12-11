@@ -19,7 +19,7 @@ public class Bilhete {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
-    private Double Valor;
+    private Double valor;
     private Integer quantidade;
     private OpcaoMeiaOuInteira opcao;
     private LugarDaPoltrona lugar;
@@ -68,13 +68,13 @@ public class Bilhete {
         this.id = id;
     }
     public Double getValor() {
-        return Valor;
+        return valor;
     }
     public void setValor(Double valor) {
         if (opcao == OpcaoMeiaOuInteira.MEIA) {
-             this. Valor = valor * quantidade/2;
+             this. valor = valor * quantidade/2;
         }
-       this.Valor = valor * quantidade;
+       this.valor = valor * quantidade;
       
     }
     public Integer getQuantidade() {

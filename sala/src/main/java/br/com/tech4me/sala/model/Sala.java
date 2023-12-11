@@ -18,8 +18,10 @@ import jakarta.persistence.Table;
 public class Sala {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JoinColumn(name = "numero_da_sala")
     private Integer numeroDasala;
     private Status status;
+    @JoinColumn(name = "imagem_do_filme")
     private Imagem imagemDoFilme;
     @JoinColumn(name = "id_filme")
     @OneToMany
