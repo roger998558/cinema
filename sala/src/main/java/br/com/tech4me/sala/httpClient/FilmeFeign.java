@@ -9,7 +9,7 @@ import br.com.tech4me.sala.model.Filme;
 
 @FeignClient("filme")
 public interface FilmeFeign {
-    @RequestMapping( method = RequestMethod.GET , value = "/filme/id"  )
+    @RequestMapping( method = RequestMethod.GET , value = "/filme/{id}"  )
     Filme obterPorId (@PathVariable String id);
     
 }

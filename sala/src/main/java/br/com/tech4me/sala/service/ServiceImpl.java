@@ -12,6 +12,7 @@ import br.com.tech4me.sala.model.Status;
 import br.com.tech4me.sala.repository.Repository;
 import br.com.tech4me.sala.shared.SalaCompletaDTO;
 import br.com.tech4me.sala.shared.SalaDTO;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 
 public class ServiceImpl implements Service {
     @Autowired
@@ -22,7 +23,7 @@ public class ServiceImpl implements Service {
     public List<SalaDTO> listarSalas() {
       return repositorio.findAll().stream().map(S -> SalaDTO.fromSalaDTO(S)).toList();
     }
-
+    @CircuitBreaker(name = "obterPorId",fallbackMethod = "fallbackObterPorNumeroDaSala")
     @Override
     public Optional<SalaCompletaDTO> obterPorNumeroDaSala(Integer numeroDasala) {
     Optional<Sala> sala = repositorio.findById(numeroDasala);
@@ -33,8 +34,16 @@ public class ServiceImpl implements Service {
     }
     return Optional.empty();
     }
+    public Optional<SalaCompletaDTO> fallbackObterPorNumeroDaSala (Integer id , Exception e ){
+        Optional<Sala> sala  = repositorio.findById(id);
 
-    @Override
+        if (sala.isPresent()) {
+            Filme filme  = null;
+            return Optional.of(SalaCompletaDTO.fromSalaCompletaDTO(sala.get(),filme ));
+        }
+        return Optional.empty();
+    }
+    
     public SalaCompletaDTO cadastrarSala(SalaCompletaDTO novaSala) {
         Sala salaAdd = new Sala(novaSala);
         Filme filme = filmeFeign.obterPorId(salaAdd.getFilme());
@@ -47,11 +56,13 @@ public class ServiceImpl implements Service {
     @Override
     public Optional<SalaCompletaDTO> atualizarPornumeroDaSala (Integer numeroDaSala, SalaCompletaDTO salaCompleto) {
         Optional<Sala> salaPut = repositorio.findById(numeroDaSala);
+        Filme filme = filmeFeign.obterPorId(salaPut.get().getFilme());
         if (salaPut.isPresent()) {
+
             Sala salaAtualizar = new Sala(salaCompleto);
             salaAtualizar.setNumeroDasala(numeroDaSala);
            
-            return Optional.of(SalaCompletaDTO.fromSalaCompletaDTO(salaPut.get()));
+            return Optional.of(SalaCompletaDTO.fromSalaCompletaDTO(salaPut.get(),filme));
         }
         return Optional.empty();
     }

@@ -20,7 +20,7 @@ public class serviceImpl implements service{
     private Repository repositorio;
     @Autowired
     private SalaFeign salaFeign;
-
+  
     @Override
     public List<BilheteDTO> obterTodosOsBilhetes() {
         return repositorio.findAll().stream().map(B -> BilheteDTO.fromBilheteDTO(B)).toList();
@@ -65,8 +65,7 @@ public class serviceImpl implements service{
         return Optional.empty();
 
     }
-
-    @Override
+  
     public Optional<BilheteCompletoDTO> atualizarBilhetePorId(String id, BilheteCompletoDTO bilheteAtualizado) {
        Optional<Bilhete> bilhete = repositorio.findById(id);
        if (bilhete.isPresent()) {
