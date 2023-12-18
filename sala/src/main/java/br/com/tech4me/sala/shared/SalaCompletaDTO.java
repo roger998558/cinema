@@ -1,6 +1,8 @@
 package br.com.tech4me.sala.shared;
 
 
+
+
 import br.com.tech4me.sala.model.Filme;
 import br.com.tech4me.sala.model.Imagem;
 import br.com.tech4me.sala.model.Sala;
@@ -20,12 +22,12 @@ public record SalaCompletaDTO (
  Filme filme 
  ) {
 
-    public static SalaCompletaDTO fromSalaCompletaDTO (Sala sala ){
+    public static SalaCompletaDTO fromSalaCompletaDTO (Sala sala , Filme filme ){
     return new SalaCompletaDTO(
     sala.getNumeroDasala(),
     sala.getStatus(),
     sala.getImagemDoFilme(),
-    sala.getFilme());
+   filme );
 
 }
 }

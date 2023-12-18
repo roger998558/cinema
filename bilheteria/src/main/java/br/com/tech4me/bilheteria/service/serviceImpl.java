@@ -48,7 +48,6 @@ public class serviceImpl implements service{
         Optional<Bilhete> bilhete = repositorio.findById(id);
 
         if (bilhete.isPresent()) {
-
             Sala sala = salaFeign.obterPorNumeroDaSala(bilhete.get().getSala());
             return Optional.of(BilheteCompletoDTO.fromBilheteCompletoDTO(bilhete.get(),sala));
         }

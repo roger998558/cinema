@@ -25,7 +25,7 @@ public class Sala {
     private Imagem imagemDoFilme;
     @JoinColumn(name = "id_filme")
     @OneToMany
-    private Filme filme;
+    private String  filme;
 
    public Sala(){
 
@@ -34,7 +34,7 @@ public class Sala {
    setNumeroDasala(dtc.numeroDasala());
    setImagemDoFilme(dtc.imagemDoFilme());
    setStatus(dtc.status());
-   setFilme(filme);
+   ;
     
    }
      public Sala(SalaDTO dto){
@@ -62,12 +62,13 @@ public class Sala {
     public void setImagemDoFilme(Imagem imagemDoFilme) {
         this.imagemDoFilme = imagemDoFilme;
     }
-    public Filme getFilme() {
+    public String  getFilme() {
         return filme;
     }
-    public void setFilme(Filme filme) {
+    public void setFilme(String filme) {
         this.filme = filme;
     }
+    
     
     
 
