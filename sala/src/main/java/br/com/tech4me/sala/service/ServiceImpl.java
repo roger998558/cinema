@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import br.com.tech4me.sala.httpClient.FilmeFeign;
 import br.com.tech4me.sala.model.Filme;
@@ -14,7 +15,8 @@ import br.com.tech4me.sala.shared.SalaCompletaDTO;
 import br.com.tech4me.sala.shared.SalaDTO;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 
-public class ServiceImpl implements Service {
+@Service
+public class ServiceImpl implements ServiceSala {
     @Autowired
     private Repository repositorio;
     @Autowired

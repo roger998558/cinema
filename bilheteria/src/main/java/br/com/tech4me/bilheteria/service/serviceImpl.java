@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import br.com.tech4me.bilheteria.httpClient.SalaFeign;
 import br.com.tech4me.bilheteria.model.Bilhete;
@@ -14,8 +15,8 @@ import br.com.tech4me.bilheteria.shared.BilheteCompletoDTO;
 import br.com.tech4me.bilheteria.shared.BilheteDTO;
 import br.com.tech4me.bilheteria.shared.StatusDaPoltronaDTO;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
-
-public class serviceImpl implements service{
+@Service
+public class serviceImpl implements ServiceBilheteri{
     @Autowired
     private Repository repositorio;
     @Autowired

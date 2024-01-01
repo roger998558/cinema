@@ -6,8 +6,7 @@ import java.util.Optional;
 import br.com.tech4me.sala.shared.SalaCompletaDTO;
 import br.com.tech4me.sala.shared.SalaDTO;
 
-
-public interface Service {
+public interface ServiceSala {
     List<SalaDTO> listarSalas();
     Optional<SalaCompletaDTO> obterPorNumeroDaSala (Integer numeroDasala );
     SalaCompletaDTO cadastrarSala (SalaCompletaDTO novaSala);

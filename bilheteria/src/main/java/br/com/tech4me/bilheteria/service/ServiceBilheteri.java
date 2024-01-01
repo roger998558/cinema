@@ -4,11 +4,12 @@ import java.util.List;
 import java.util.Optional;
 
 
+
 import br.com.tech4me.bilheteria.shared.BilheteCompletoDTO;
 import br.com.tech4me.bilheteria.shared.BilheteDTO;
 import br.com.tech4me.bilheteria.shared.StatusDaPoltronaDTO;
 
-public interface service {
+public interface ServiceBilheteri {
     List<BilheteDTO> obterTodosOsBilhetes();
     BilheteCompletoDTO cadastrarBilhete(BilheteCompletoDTO novoBilhete);
     Optional<BilheteCompletoDTO> obterBilhetePorId (String id);
